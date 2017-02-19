@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<ETUDE ID="100"
+		ETAT_ETUDE="INITIALISEE" STATUT_ETUDE="ACTIVE" COMMENTAIRE="etude creer à nouveau" DATE_EVALUATION="2016-05-01"
+		DATE_VALIDATION="2016-05-04" DATE_FINALISATION="2016-03-04" />
+		 
+	<ECHANTILLON id="1" taux_sondage="10" nombre_minimum="20" ETUDE_ID="100" />
+
+	<FICHE_PERSONNE id="100" numero="1" age="65" sexe="H"
+	 active="true" contexte_psychologique="COOPERANT"
+	etude_id="100" echantillon_id="1" />
+
+		<FICHE_PERSONNE id="101" numero="2" age="90" sexe="F"
+	 active="true" contexte_psychologique="COOPERANT"
+	etude_id="100" echantillon_id="1" />
+
+</dataset>

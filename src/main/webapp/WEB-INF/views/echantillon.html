@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+	<title>gestion etude</title>
+	
+	<link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/resources/css/bootstrap-theme.min.css}"/>
+	<script type="text/javascript" th:src="@{/resources/js/jquery-2.2.4.js}"></script>
+	
+</head>
+
+<body>
+ <div class="container">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Gestion etude</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#">Deconexion </a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+	
+	  <fieldset>
+		  <legend>identification</legend>
+		  <div class="row">
+			  <div class="col-md-3">
+				  <label>Satut:</label> 
+			 </div>
+			 <div class="col-md-3">
+				  <span th:text="${etude.statutEtude}"></span>
+			  </div>
+			  <div class="col-md-3">
+				  <label>Date de validation:</label> 
+			  </div>
+			  <div class="col-md-3">
+				  <span th:text="${etude.dateValidation}"></span>
+			  </div>
+		  </div>
+		  <div class="row">
+			  <div class="col-md-3">
+				  <label>Etat:</label>
+			  </div>
+			  <div class="col-md-3">
+				  <span th:text="${etude.etatEtude}"></span>
+			  </div>
+			  <div class="col-md-3">
+				  <label>Date d'evaluation:</label>
+			  </div>
+			  <div class="col-md-3"> 
+				  <span th:text="${etude.dateEvaluation}"></span>
+			  </div>
+		  </div>
+		   <div class="row">
+			 <div class="col-md-3"> 
+				  <label>Effectif:</label> 
+			 </div>
+			  <div class="col-md-3"> 
+				  <span th:text="${effectifEtude}"></span>
+			  </div>
+			  <div class="col-md-3"> 
+				  <label>Date de finalisation:</label>
+			  </div>
+			  <div class="col-md-3">  
+				  <span th:text="${etude.dateFinalisation}"></span>
+			  </div>
+			  
+		  </div>
+	 </fieldset>
+<br/><br/><br/>	 
+	<fieldset>
+		<legend>Constitution d'un échantillon aléatoire</legend>
+		<form action="#" th:action="@{/echantillon/calculer(id=${etude.id})}" th:object="${echantillon}" method="post">
+		<div class="row">
+			<div class="col-md-2">
+				<label>Taux de sondage :</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" th:field="*{tauxSondage}" />
+			</div>
+			<div class="col-md-2">
+				<label>Nombre minimum :</label>
+			</div>
+			<div class="col-md-2">
+				<input type="text" th:field="*{nombreMinimum}" />
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-primary">Calculer</button>
+			</div>
+		</div>
+		</form>
+		<div class="row">
+			<div th:unless="${#lists.isEmpty(echantillon.fichePersonnes)}" class="col-md-8">
+			 <table class="table table-striped">
+	    		<thead>
+	    		 <tr>
+	                   	<th>Bénéficiaire</th>
+	                   	<th>Numero</th>
+	                    <th>Sexe</th>
+	                    <th>Age</th>
+	                    <th>Contexte psychologique</th>
+	              </tr>
+			    </thead>
+		     	<tbody>
+		     	 	<tr th:each="personne:${echantillon.fichePersonnes}">
+		     	 		<th th:text="${personne.prenom + ' ' + personne.nom}"></th>
+	                   	<th th:text="${personne.numero}"></th>
+	                    <th th:text="${personne.sexe}"></th>
+	                    <th th:text="${personne.age}"></th>
+	                    <th th:text="${personne.contextePsychologique}"></th>
+	                </tr>
+		     	</tbody>
+     		</table>
+			</div>
+		</div>
+	
+	</fieldset>
+</div>
+<script type="text/javascript" th:src="@{/resources/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+<title>gestion etude</title>
+
+<link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/resources/css/bootstrap-theme.min.css}" />
+<script type="text/javascript" th:src="@{/resources/js/jquery-2.2.4.js}"></script>
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Gestion etude</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#">Deconexion </a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Main component for a primary marketing message or call to action -->
+		<form id="formAjoutPersonne" class="form-horizontal" method="post"
+			th:action="@{/etude/fichePersonne}">
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Ajouter Fiche Personne</legend>
+				<div class="row">
+					<div class="col-md-3">
+						<label>Nom:</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" name="nom" th:value="${fichePersonne.nom}" />
+					</div>
+					<div class="col-md-3">
+						<label>Prenom:</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" name="prenom" th:value="${fichePersonne.prenom}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label>Numero:</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" name="numero"
+							th:value="${fichePersonne.numero}" />
+					</div>
+					<div class="col-md-3">
+						<label>Sexe:</label>
+					</div>
+					<div class="col-md-3">
+						<input type="radio" name="sexe" value="F" /> <label>F</label> <input
+							type="radio" name="sexe" value="H" /> <label>H</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label>Age:</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" name="age" th:value="${fichePersonne.age}"></input>
+					</div>
+					<div class="col-md-3">
+						<label>Contexte Psychologique:</label>
+					</div>
+					<div class="col-md-2">
+						<select name="contextePsychologique" class="form-control"
+							th:value="${fichePersonne.contextePsychologique}">
+							<option value=""></option>
+							<option value="COOPERANT">Cooperant</option>
+							<option value="DEMISSIONNAIRE">Demissionnaire</option>
+							<option value="OPPOSANT">Opposant</option>
+						</select>
+					</div>
+				</div>
+
+				<input type="hidden" name="etude.id" th:value="${EtudeId}" />
+				<div class="col-sm-12 no-gutter  ">
+					<button class="btn btn-default btn-align pull-right"
+						id="AjoutPersonneBtn" type="submit">Valider</button>
+				</div>
+
+			</fieldset>
+		</form>
+
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/resources/js/bootstrap.min.js}"></script>
+</body>
+</html>

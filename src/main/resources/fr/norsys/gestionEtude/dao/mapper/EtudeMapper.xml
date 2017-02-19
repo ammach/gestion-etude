@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "fr.norsys.gestionEtude.dao.mapper.EtudeMapper">
+
+
+	<resultMap type="Etude" id="selectEtudesMap" autoMapping="true">
+			<id property="id" column="id" />
+			<result column="ACTIVE" property="active" />
+			
+			<result column="STATUT_ETUDE" property="statutEtude" 
+			typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+			
+			<result column="ETAT_ETUDE" property="etatEtude" 
+			typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+			
+			<result column="COMMENTAIRE" property="commentaire" />
+			
+			<result column="DATE_EVALUATION" property="dateEvaluation" 
+			typeHandler="fr.norsys.gestionEtude.dao.typehandler.LocalDateTypeHandler"
+			javaType="java.time.LocalDate" jdbcType="DATE"/>			
+			<result column="DATE_VALIDATION" property="dateValidation" 
+			typeHandler="fr.norsys.gestionEtude.dao.typehandler.LocalDateTypeHandler"
+			javaType="java.time.LocalDate" jdbcType="DATE"/>
+			<result column="DATE_FINALISATION" property="dateFinalisation"
+			typeHandler="fr.norsys.gestionEtude.dao.typehandler.LocalDateTypeHandler"
+			javaType="java.time.LocalDate" jdbcType="DATE" />
+	</resultMap>
+		
+		
+	<select id="listeEtudes" resultMap="selectEtudesMap">
+		<!-- TODO mettre en place la requête sql pour récupérer toutes les études -->
+SELECT 	
+		etd.identifiant,
+		etd.statutEtude,
+		etd.etatEtude,
+		etd.dateValidation,
+		etd.dateEvaluation,
+		etd.dateFinalisation
+FROM 	Etude etd
+	</select>
+
+	<select id="getById" resultMap="selectEtudesMap">
+		<!-- TODO mettre en place la requête sql pour récupérer une étude par son id
+		NB:on récupére l'id de l'étude par cette syntaxe : #{id}
+		-->
+SELECT 	
+		etd.identifiant,
+		etd.statutEtude,
+		etd.etatEtude,
+		etd.dateValidation,
+		etd.dateEvaluation,
+		etd.dateFinalisation
+FROM 	Etude etd 
+WHERE 	etd.identifiant = #{id}
+	</select>
+</mapper> 

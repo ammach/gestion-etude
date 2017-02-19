@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Gestion Etude</title>
+
+	 
+	<link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/resources/css/bootstrap-theme.min.css}"/>
+	<script type="text/javascript" th:src="@{/resources/js/jquery-2.2.4.js}"></script>
+
+	
+  </head>
+  <body>
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Gestion etude</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#">Deconexion </a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+    <form id="form" class="form-horizontal" >
+	 <fieldset class="scheduler-border">
+	    <legend class="scheduler-border">Critère de recherche</legend>
+	    <div class="row">
+	        <div class="col-md-1"> 
+	        	 <label class="control-label input-label" for="startTime">Etat</label>
+	        </div>
+	        <div class="col-md-2">
+             	 <select name="etat" class="form-control input-sm">
+             	 	  <option value=""></option>
+					  <option value="INITIALISEE">Initialiser</option>
+					  <option value="EN_SAISIE">En saisie</option>
+					  <option value="FINALISEE">Finalisée</option>
+				</select> 
+	         </div>
+	    	<div class="col-md-1">
+	     		<label class="control-label input-label" for="startTime">Statut</label>
+	     	</div>
+	     	<div class="col-md-2">
+	           <select name="statut" class="form-control input-sm">
+	           		  <option value=""></option>
+					  <option value="ACTIVE" >Active</option>
+					  <option value="CLOTUREE" >Clôturée</option>
+					  <option value="REPORTEE"  >reportée</option>
+					  <option value="ANNULEE">Annulée</option>
+				</select> 
+	        </div>
+		    <div class="col-sm-2 no-gutter  ">
+			            <button class="btn btn-default btn-align pull-right">Rechercher</button>
+			</div>
+	    </div>
+	    
+	</fieldset>
+	</form>
+	
+	 <br/>
+	 <br/>
+ 	 <table class="table table-striped">
+	    <thead>
+	    		 <tr>
+	                    <th>statut</th>
+	                    <th>etat</th>
+	                    <th>date de validation</th>
+	                    <th>date d'évaluation</th>
+	                    <th>date de finalisation</th>
+	                </tr>
+	    </thead>
+     	<tbody th:remove="all-but-first">
+				<!-- [TODO] afficher la liste des études récupérées -->
+								
+					<tr th:each="etude : ${etudeList}">
+					
+					<td th:text="${etude.statut}"></td>
+					<td th:text="${etude.etat}"></td>
+					<td th:text="${etude.dateValidation}"></td>
+					<td th:text="${etude.dateEvaluation}"></td>
+					<td th:text="${etude.dateFinalisation}"></td>
+					
+					</tr>
+			
+                
+        </tbody>
+                
+        </tbody>
+  </table>
+</div>
+<script type="text/javascript" th:src="@{/resources/js/bootstrap.min.js}"></script>
+  </body>
+</html>

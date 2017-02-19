@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fr.norsys.gestionEtude.dao.mapper.PersonneMapper">
+
+	<resultMap id="selectPersonneMap" type="FichePersonne">
+	
+		<result property="active" column="ACTIVE" />
+		<result property="numero" column="NUMERO" />
+		<result property="age" column="AGE" />
+		<result property="sexe" column="SEXE" />
+		<result property="nom" column="NOM" />
+		<result property="prenom" column="PENOM" />
+		<result property="contextePsychologique" column="CONTEXTE_PSYCHOLOGIQUE"
+		typeHandler="fr.norsys.gestionEtude.dao.typehandler.ContextPsychologiqueTypeHandler"/>
+		
+	</resultMap>
+
+	<select id="getByEtudeId" resultMap="selectPersonneMap">
+		<!-- TODO ajouter la requête sql pour récupérer la liste des fiches personnes de l'étude -->
+SELECT 
+		pers.numero,
+		pers.sexe,
+		pers.age,
+		pers.contextPsycologique
+FROM 	FichePersonne pers 
+WHERE 	etd.identifiant = #{id}
+	</select>
+
+</mapper>
